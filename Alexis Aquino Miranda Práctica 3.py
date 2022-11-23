@@ -36,7 +36,7 @@ class VentanaPrincipal(QMainWindow):
         self.abrirArchivo.clicked.connect(self.openArchive)
 
         #guardar archivo
-        self.guardar = QPushButton("Save as")
+        self.guardar = QPushButton("Save as...")
         self.guardar.setStyleSheet("font-weight: bold;")
         self.guardar.clicked.connect(self.mostrar_dialogo)
         self.guardar.setIcon(QIcon("save.jpg"))
@@ -48,9 +48,10 @@ class VentanaPrincipal(QMainWindow):
 
 
         #boton guardar 
-        self.guardarRapido = QPushButton("modeOscuro")
+        self.guardarRapido = QPushButton("Save")
+        self.guardarRapido.setIcon(QIcon("save.jpg"))
         self.guardarRapido.setStyleSheet("font-weight: bold;")
-        self.guardarRapido.clicked.connect(self.modeOscuro)
+        self.guardarRapido.clicked.connect(self.guardarFichero)
 
         #boton editar (usado para salir)
         self.edit = QPushButton("Exit")
@@ -104,6 +105,15 @@ class VentanaPrincipal(QMainWindow):
         print(self.textNotas)
 
 
+    def guardarFichero(self):
+        
+        f = open(self.archivoAbrir,'w') 
+        f.write(self.textoIn.toPlainText())
+        f.close()
+
+        print(self.archivoAbrir)
+        print(exit())
+
     def mostrar_dialogo(self):
         """ metodo para guardar el archivo en alguna dirección que se elija por el usuario"""
         ventana_dialogo = QFileDialog.getSaveFileName(
@@ -114,6 +124,8 @@ class VentanaPrincipal(QMainWindow):
         f = open(archivo,'w')
         f.write(self.textoIn.toPlainText())
         f.close()
+
+        
         print(archivo)
 
 
