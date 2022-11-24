@@ -41,7 +41,7 @@ class VentanaPrincipal(QMainWindow):
         self.guardar.clicked.connect(self.mostrar_dialogo)
         self.guardar.setIcon(QIcon("save.jpg"))
         #add action guardar
-        self.accionSave = QAction("&guardar archivo", self)
+        self.accionSave = QAction("&guardar archivo como", self)
         self.accionSave.setShortcut(QKeySequence("ctrl+s"))
         self.accionSave.triggered.connect(self.mostrar_dialogo)
         self.abrirArchivo.addAction(self.accionSave)
@@ -52,6 +52,13 @@ class VentanaPrincipal(QMainWindow):
         self.guardarRapido.setIcon(QIcon("save.jpg"))
         self.guardarRapido.setStyleSheet("font-weight: bold;")
         self.guardarRapido.clicked.connect(self.guardarFichero)
+
+        #action guardar rapido
+        self.accionSaveRap = QAction("&guardar archivo", self)
+        self.accionSaveRap.setShortcut(QKeySequence("ctrl+d"))
+        self.accionSaveRap.triggered.connect(self.guardarFichero)
+        self.guardarRapido.addAction(self.accionSaveRap)
+
 
         #boton editar (usado para salir)
         self.edit = QPushButton("Exit")
@@ -74,8 +81,11 @@ class VentanaPrincipal(QMainWindow):
         self.Barra_menu = self.menuBar()
         self.menu =  self.Barra_menu.addMenu("&menu")
         self.menu.addAction(  self.accionSave)
+        self.menu.addAction(self.accionSaveRap)
         self.menu.addAction(self.accion)
         self.menu.addAction(  self.accionExit)
+     
+
       
       
 
@@ -106,24 +116,29 @@ class VentanaPrincipal(QMainWindow):
 
 
     def guardarFichero(self):
-        
-        f = open(self.archivoAbrir,'w') 
-        f.write(self.textoIn.toPlainText())
-        f.close()
+        try:
+            f = open(self.archivoAbrir,'w') 
+            f.write(self.textoIn.toPlainText())
+            f.close()
+            print(exit())
+        except AttributeError:
+            self.mostrar_dialogo()
+            print('save as')
 
-        print(self.archivoAbrir)
-        print(exit())
 
     def mostrar_dialogo(self):
         """ metodo para guardar el archivo en alguna dirección que se elija por el usuario"""
-        ventana_dialogo = QFileDialog.getSaveFileName(
-            self, caption="Guardar archivo como...", dir=".",
-            filter="Documentos de texto (*.txt);",
-            selectedFilter="Documentos de texto (*.txt)")
-        archivo = ventana_dialogo[0]
-        f = open(archivo,'w')
-        f.write(self.textoIn.toPlainText())
-        f.close()
+        try:
+            ventana_dialogo = QFileDialog.getSaveFileName(
+                self, caption="Guardar archivo como...", dir=".",
+                filter="Documentos de texto (*.txt); \n documento sql (*.sql); \n document python (*.py);\n documento java (*.java);\n documento json (*.json);",
+                selectedFilter="Documentos de texto (*.txt); \n document python (*.py);\ndocumento sql (*.sql); \n documento java (*.java); \n documento json (*.json);")
+            archivo = ventana_dialogo[0]
+            f = open(archivo,'w')
+            f.write(self.textoIn.toPlainText())
+            f.close()
+        except:
+            print('no se ha elegido una ruta.')
 
         
         print(archivo)
@@ -144,8 +159,8 @@ class VentanaPrincipal(QMainWindow):
     def openArchive(self):
         """ metodo para abrir archivos y mostrarlos en el panel del texto editable"""
         ventana_dialogo = QFileDialog.getOpenFileName(self, caption="Abrir archivo.", dir=".",
-        filter="Documentos de texto (*.txt);",
-        selectedFilter="Documentos de texto (*.txt)")
+        filter="Documentos de texto (*.txt); \ndocumento sql (*.sql);\n document python (*.py); \n documento java (*.java) \n documento json (*.json);",
+        selectedFilter="Documentos de texto (*.txt);\n document python (*.py);\n;documento sql (*.sql); \n documento java (*.java); \n documento json (*.json);")
         self.archivoAbrir = ventana_dialogo[0]
         print(self.archivoAbrir)#este print muestrs la ruta
 
