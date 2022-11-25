@@ -12,7 +12,7 @@ class VentanaPrincipal(QMainWindow):
         super().__init__()
         #titulo, icono y tamaño de app
         self.setWindowTitle('Bloc de notas')
-       
+
         self.setWindowIcon(QIcon("logoBlocNotas.jpg"))
         self.resize(500,600)
 
@@ -20,9 +20,7 @@ class VentanaPrincipal(QMainWindow):
         layout_Horizontal = QHBoxLayout()
         layout_Vertical = QVBoxLayout()
 
-
-        #creacion de menu 
-        
+        #botones esto puede estar en un metodo
         #abrir arcivo
         self.abrirArchivo = QPushButton("Open")
         self.abrirArchivo.setIcon(QIcon("open-file.png"))
@@ -107,6 +105,32 @@ class VentanaPrincipal(QMainWindow):
         componentePrincipal.setStyleSheet("background-color: rgb(224, 224, 224);")
         
         self.setCentralWidget(componentePrincipal)
+
+    def creacionBotones(self):
+        print('botones')
+        #open
+        self.btnOpen = QPushButton("Open")
+        self.btnOpen.setIcon(QIcon("open-file.png"))
+        self.btnOpen.setStyleSheet("font-weight: bold;")
+
+        #save as
+        self.btnSaveAs = QPushButton("Save as...")
+        self.btnSaveAs.setStyleSheet("font-weight: bold;")
+        #self.btnSaveAs.clicked.connect(self.mostrar_dialogo)
+        self.btnSaveAs.setIcon(QIcon("save.jpg"))
+
+        #save
+        self.btnSave = QPushButton("Save")
+        self.btnSave.setIcon(QIcon("save.jpg"))
+        self.btnSave.setStyleSheet("font-weight: bold;")
+        #self.btnSave.clicked.connect(self.guardarFichero)
+
+        #exit
+        self.btnExit = QPushButton("Exit")
+        self.btnExit.setIcon(QIcon("exit.jpg"))
+       # self.btnExit.clicked.connect(self.salirApp)
+        self.btnExit.setStyleSheet("font-weight: bold;")
+
 
 
     def imprimir(self):
