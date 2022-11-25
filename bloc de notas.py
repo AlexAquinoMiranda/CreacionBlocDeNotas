@@ -78,12 +78,14 @@ class VentanaPrincipal(QMainWindow):
         """ creación de un menú en donde contiene los atajos que podemos realizar"""
          #agg en el menu las acciones
         self.Barra_menu = self.menuBar()
+        self.Barra_menu.setStyleSheet("background-color: rgb(224, 224, 224);")
         self.menu =  self.Barra_menu.addMenu("&menu")
         self.menu.addAction(  self.accionNew) 
         self.menu.addAction(  self.accionSave)
         self.menu.addAction(self.accionSaveAs)
         self.menu.addAction(self.accionOpen)
         self.menu.addAction(  self.accionExit)
+        self.menu.setStyleSheet("background-color: rgb(224, 224, 224);")
         
     def atajosTeclado(self):
         """Creación de atajos para facilitar ciertas tareas """
