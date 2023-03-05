@@ -20,7 +20,8 @@ Para ejecutar el programa, abra una ventana de terminal y escriba lo siguiente:
  abrir, guardar y guardar como archivos de texto. Puede filtrar los archivos por extensión
  utilizando el menú desplegable. Para salir de la aplicación, seleccione la opción en el menú.
  
- Funciones del programa
+ Funciones del programa.
+ 
 - Crear nuevo fichero: Crea un nuevo archivo en blanco para que el usuario pueda escribir su contenido.
 - Abrir fichero: Permite al usuario abrir un archivo de texto existente y cargar su contenido en el bloc de notas.
 - Guardar: Guarda el contenido actual del bloc de notas en el archivo que se está editando actualmente.
@@ -28,7 +29,8 @@ Para ejecutar el programa, abra una ventana de terminal y escriba lo siguiente:
 - Filtro de extensión de ficheros: Filtra los archivos por su extensión para que el usuario pueda encontrar fácilmente los archivos de texto.
 - Salir de la aplicación: Cierra el programa y sale de la interfaz de usuario.
 
-Limitaciones
+Limitaciones.
+
 Este programa fue diseñado para uso personal y no está optimizado para manejar grandes cantidades de datos
 o archivos de texto muy grandes. Si desea utilizar este programa para fines comerciales o para manejar archivos
 más grandes, puede ser necesario modificar el  código fuente para adaptarlo a sus necesidades específicas.
